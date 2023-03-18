@@ -45,7 +45,7 @@ public:
     int find(int x){
         for(int i=0;i<size;i++){
             if(arr[i]==x)
-                return i+1;
+                return i;
         }
         return -1;
     }
@@ -58,7 +58,7 @@ public:
         cout<<arr[idx-1]<<endl;
     }
     void remove(int idx){
-        for(int i=idx-1;i<size-1;i++){
+        for(int i=idx;i<size-1;i++){
             arr[i]=arr[i+1];
         }
         pop();
@@ -79,19 +79,19 @@ public:
         size=0;
     }
     int get(int idx){
-        return arr[idx-1];
+        return arr[idx];
     }
     void set(int x,int idx){
-        arr[idx-1]=x;
+        arr[idx]=x;
     }
     void insert(int x,int idx){
         if(size==cap)
             exCap();
         int *b=new int[size+1];
-        for(int i=0;i<idx-1;i++)
+        for(int i=0;i<idx;i++)
             b[i]=arr[i];
-        b[idx-1]=x;
-        for(int i=idx;i<=size;i++)
+        b[idx]=x;
+        for(int i=idx+1;i<=size;i++)
             b[i]=arr[i-1];
         swap(arr,b);
         delete[] b;
@@ -102,38 +102,6 @@ public:
         if(size==0)
             return true;
         return false;
-    }
-    void right_rotate(){
-        int x=arr[size-1];
-        for(int i=size-1;i>=1;i--){
-            arr[i]=arr[i-1];
-        }
-        arr[0]=x;
-    }
-    void right_rotate(int k){
-        k%=size;
-        while(k--){
-            int x=arr[size-1];
-            for(int i=size-1;i>=1;i--){
-                arr[i]=arr[i-1];
-            }
-            arr[0]=x;
-        }
-    }
-    void left_rotate(){
-        int x=arr[0];
-        for(int i=0;i<size-1;i++){
-            arr[i]=arr[i+1];
-        }
-        arr[size-1]=x;
-    };
-    int pop(int idx){
-        int x=arr[idx-1];
-        for(int i=idx-1;i<size-1;i++){
-            arr[i]=arr[i+1];
-        }
-        pop();
-        return x;
     }
 };
 #endif //VECTOR
