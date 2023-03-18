@@ -33,7 +33,7 @@ public:
             b[i]=arr[i];
         b[size]=x;
         swap(arr,b);
-        delete[] b;
+        delete[] b; 
         b=nullptr;
         size++;
     }
