@@ -1,12 +1,14 @@
 #ifndef SINGLELINKEDLIST
 #define SINGLELINKEDLIST
 using namespace std;
+
 struct TheNode {
     int Val{};
     TheNode *Next{};
 
     TheNode(int x = 0) : Val(x) {}
 };
+
 class SingleLinkedList {
 public:
     TheNode *head{};
@@ -182,4 +184,5 @@ public:
         len = 0;
     }
 };
+
 #endif //SINGLELINKEDLIST
