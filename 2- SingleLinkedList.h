@@ -135,9 +135,9 @@ public:
             head1 = head1->Next;
             head2 = head2->Next;
         }
-        if (!head1) {
+        if (!head1 && head2) {
             return -1;
-        } else if (!head2) {
+        } else if (head1 && !head2) {
             return 1;
         }
         return 0;
