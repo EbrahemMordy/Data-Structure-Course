@@ -13,7 +13,7 @@ class Stack {
 private:
     int len{};
     Node *head{};
-
+public:
     Stack() {}
 
     void Push(int x) {
