@@ -1,6 +1,7 @@
 #ifndef DS_DOUBLELINKEDLIST_H
 #define DS_DOUBLELINKEDLIST_H
 using namespace std;
+
 struct DoubleNode {
     int Val{};
     DoubleNode *Pre{};
@@ -8,6 +9,7 @@ struct DoubleNode {
 
     DoubleNode(int x = 0) : Val(x) {}
 };
+
 class DoubleLinkedList {
 public:
     DoubleNode *head{};
@@ -253,4 +255,5 @@ public:
         len = 0;
     }
 };
+
 #endif //DS_DOUBLELINKEDLIST_H
