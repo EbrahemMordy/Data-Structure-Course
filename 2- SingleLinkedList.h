@@ -97,18 +97,6 @@ public:
         return cur;
     }
 
-    int find(int k) {
-        TheNode *cur = head;
-        int cot = 1;
-        while (cur && cur->Val != k) {
-            cur = cur->Next;
-            cot++;
-        }
-        if (!cur)
-            cot = -1;
-        return cot;
-    }
-
     void Print() {
         TheNode *temp = head;
         while (temp != nullptr) {
