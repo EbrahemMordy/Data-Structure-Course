@@ -15,9 +15,10 @@ private:
     int val{};
     BST *Left{};
     BST *Right{};
-
+    
 public:
-    BST(int x = 0) : val(x) {
+
+    BST(int x) : val(x) {
 
     }
 
@@ -127,6 +128,64 @@ public:
         if (dad)
             return {true, dad->val};
         return {false, -1};
+    }
+
+    BST *FindNode(int data) {
+        if (val == data)
+            return this;
+        if (val < data) {
+            if (Right)
+                return Right->FindNode(data);
+            return nullptr;
+        } else {
+            if (Left)
+                return Left->FindNode(data);
+            return nullptr;
+        }
+    }
+
+    BST *min_node() {
+        BST *cur = this;
+        while (cur && cur->Left)
+            cur = cur->Left;
+        return cur;
+    }
+
+    void special_delete(BST *child) {
+        val = child->val;
+        Left = child->Left;
+        Right = child->Right;
+        delete child;
+    }
+
+    BST *DeleteNode(BST *root, int data) {
+        if (!root)
+            return nullptr;
+        if (data < root->val) {
+            root->Left = DeleteNode(root->Left, data);
+        } else if (root->val < data) {
+            root->Right = DeleteNode(root->Right, data);
+        } else {
+            if (!root->Left && !root->Right) {
+                delete root;
+                root = nullptr;
+            } else if (!root->Right) {
+                root->special_delete(root->Left);
+            } else if (!root->Left) {
+                root->special_delete(root->Right);
+            } else {
+                BST *cur = FindNode(root->Right->min());
+                root->val = cur->val;
+                root->Right = DeleteNode(root->Right, root->val);
+            }
+        }
+        return root;
+    }
+
+    void DeleteData(int data) {
+        if (data == val && !Left && !Right)
+            return;
+        DeleteNode(this, data);
     }
 };
 
